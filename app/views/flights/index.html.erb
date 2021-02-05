@@ -1,5 +1,3 @@
-<p>This is the starting index page</p>
-
 <%= form_with url: "/flights", method: :get do |form| %>
   
   <label for="from_airport">Departing from:</label>
@@ -25,10 +23,17 @@
   <%= form.submit "Search" %>
 <% end %>
 
-<% if false %>
-  <%= form_with url: "/flights", method: :get do |form| %>
-    <%= form.label :departing, "Departing airports" %>
-    <%= form.select :departing %>
-    <%= form.submit "Search" %>
+<% if @searched %>
+  <% if @flights.any? %>
+    <%= form_for Booking.new, url: "/bookings/new", method: :get do |form| %>
+
+      <%= collection_radio_buttons(:booking, :flight_id, @flights, :id, :pretty_print) %>
+
+      <%= hidden_field_tag(:number_of_passengers, @number_of_passengers) %>
+
+      <%= form.submit "Search" %>
+    <% end %>
+  <% else %>
+    <p>No flights are available for the options you selected</p>
   <% end %>
 <% end %>
