@@ -27,9 +27,9 @@
   <% if @flights.any? %>
     <%= form_for Booking.new, url: "/bookings/new", method: :get do |form| %>
 
-      <%= collection_radio_buttons(:booking, :flight_id, @flights, :id, :pretty_print) %>
+      <%= form.collection_radio_buttons :flight_id, @flights, :id, :option_print %>
 
-      <%= hidden_field_tag(:number_of_passengers, @number_of_passengers) %>
+      <%= form.hidden_field :number_of_passengers, value: @number_of_passengers %>
 
       <%= form.submit "Search" %>
     <% end %>

@@ -1,1 +1,24 @@
 <h1>New booking</h1>
+
+<%= render "flight" %>
+
+<div>
+  <h4>Passenger Information:</h4>
+  <%= form_for @booking do |bf| %>
+    <ul>
+      <%= bf.fields_for :passengers do |pf| %>
+        <li>
+          Passenger: <br>
+          <%= pf.label :name %>
+          <%= pf.text_field :name %><br>
+          <%= pf.label :email %>
+          <%= pf.email_field :email %><br><br>
+        </li>
+      <% end %>
+    <ul>
+
+    <%= bf.hidden_field :flight_id, value: @flight.id %>
+
+    <%= bf.submit %>
+  <% end %>
+<div>

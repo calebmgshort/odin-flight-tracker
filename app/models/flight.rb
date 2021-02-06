@@ -10,7 +10,8 @@ class Flight < ApplicationRecord
     Flight.where("from_airport_id = ? AND to_airport_id = ? AND date(departure_time) = ?", from_airport_id, to_airport_id, date) 
   end
 
-  def pretty_print
+  def option_print
     "Departure Time: #{self.departure_time}, Duration: #{self.duration}"
   end
+
 end

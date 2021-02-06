@@ -5,7 +5,7 @@ class FlightsController < ApplicationController
 
     @searched = __searched?
     if @searched
-      @num_passengers = params[:num_passengers]
+      @number_of_passengers = params[:number_of_passengers]
       @flights = Flight.search(params[:from_airport], params[:to_airport], params[:date])
     end
   end
